@@ -1,0 +1,124 @@
+{
+  "name": "opencanvas",
+  "version": "1.0.10",
+  "private": true,
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "author": "OpenCanvas",
+  "description": "An open, local-first visual knowledge workspace.",
+  "engines": {
+    "node": ">=20",
+    "npm": ">=10"
+  },
+  "packageManager": "npm@11.6.2",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:web\" \"npm:dev:electron\"",
+    "dev:web": "vite --host 127.0.0.1",
+    "setup:electron": "node scripts/ensure-electron.cjs",
+    "dev:electron": "npm run setup:electron && node scripts/dev-electron.cjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:electron": "npm run setup:electron && node scripts/electron-smoke.cjs",
+    "test:portable": "node scripts/portable-smoke.cjs",
+    "check:budget": "node scripts/check-build-budget.cjs",
+    "check:contrast": "node scripts/check-theme-contrast.cjs",
+    "check:hygiene": "node scripts/run-knip.cjs",
+    "check:interaction": "node scripts/check-interaction-budget.cjs",
+    "licenses:update": "node scripts/third-party-notices.cjs --write",
+    "licenses:check": "node scripts/third-party-notices.cjs --check",
+    "security:check": "npm audit --omit=dev --audit-level=moderate && npm audit --audit-level=high",
+    "build": "npm run test && npm run typecheck && npm run check:hygiene && npm run check:contrast && npm run check:interaction && npm run licenses:check && vite build && npm run check:budget",
+    "pack": "npm run build && npm run setup:electron && electron-builder --dir",
+    "dist": "npm run build && npm run setup:electron && electron-builder --win nsis",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@floating-ui/dom": "1.8.0",
+    "@tiptap/core": "3.31.3",
+    "@tiptap/extension-highlight": "3.31.3",
+    "@tiptap/extension-image": "3.31.3",
+    "@tiptap/extension-mathematics": "3.31.3",
+    "@tiptap/extension-placeholder": "3.31.3",
+    "@tiptap/extension-table": "3.31.3",
+    "@tiptap/extension-task-item": "3.31.3",
+    "@tiptap/extension-task-list": "3.31.3",
+    "@tiptap/extension-underline": "3.31.3",
+    "@tiptap/markdown": "3.31.3",
+    "@tiptap/pm": "3.31.3",
+    "@tiptap/react": "3.31.3",
+    "@tiptap/starter-kit": "3.31.3",
+    "fflate": "0.8.3",
+    "katex": "0.17.0",
+    "lucide-react": "1.31.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-markdown": "10.1.0",
+    "rehype-raw": "7.0.0",
+    "remark-gfm": "4.0.1",
+    "zustand": "5.0.14"
+  },
+  "devDependencies": {
+    "@types/node": "26.2.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "@vitejs/plugin-react": "6.0.5",
+    "concurrently": "10.0.4",
+    "electron": "43.2.0",
+    "electron-builder": "26.15.3",
+    "knip": "6.32.2",
+    "typescript": "7.0.2",
+    "vite": "8.2.1",
+    "vitest": "4.1.10",
+    "wait-on": "9.1.0"
+  },
+  "knip": {
+    "ignoreDependencies": [
+      "@floating-ui/dom"
+    ],
+    "entry": [
+      "electron/*.cjs",
+      "scripts/*.cjs"
+    ],
+    "project": [
+      "src/**/*.{ts,tsx}",
+      "electron/*.cjs",
+      "scripts/*.cjs"
+    ]
+  },
+  "build": {
+    "appId": "com.opencanvas.desktop",
+    "productName": "OpenCanvas",
+    "electronDist": "node_modules/electron/dist",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "LICENSE",
+        "to": "licenses/OpenCanvas-GPL-3.0.txt"
+      },
+      {
+        "from": "THIRD_PARTY_NOTICES.md",
+        "to": "licenses/THIRD_PARTY_NOTICES.md"
+      },
+      {
+        "from": "src/assets/fonts/inter/LICENSE.txt",
+        "to": "licenses/Inter-LICENSE.txt"
+      }
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

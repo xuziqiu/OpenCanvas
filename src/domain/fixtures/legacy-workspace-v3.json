@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 3,
+  "cards": [
+    { "id": "v3-card", "fileName": "v3.md", "relativePath": "项目\\资料\\v3.md", "title": "V3 卡片", "body": "正文" }
+  ],
+  "projects": [
+    { "id": "v3-project", "name": "项目", "relativePath": "/项目/" }
+  ],
+  "folders": ["项目\\资料", "项目\\资料"],
+  "boards": [
+    {
+      "version": 3,
+      "id": "v3-board",
+      "fileName": "v3.board.json",
+      "title": "V3 白板",
+      "projectId": "v3-project",
+      "placements": [
+        { "id": "outer-section", "kind": "text", "text": "Section 1", "isFrame": true, "x": 0, "y": 0, "width": 900, "height": 600 },
+        { "id": "v3-node", "kind": "card", "entityId": "v3-card", "sectionId": "outer-section", "sectionIds": ["outer-section", "outer-section"], "scrollTop": -30, "x": 60, "y": 80, "width": 520, "height": 300 }
+      ],
+      "connectors": [],
+      "viewport": { "x": 0, "y": 0, "zoom": -4 }
+    }
+  ]
+}

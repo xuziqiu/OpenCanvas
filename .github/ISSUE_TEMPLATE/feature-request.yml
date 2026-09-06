@@ -1,0 +1,33 @@
+name: 功能建议
+description: 说明真实使用场景，而不只是一个按钮名称
+title: "[建议] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: situation
+    attributes:
+      label: 使用场景
+      description: 你正在做什么，现有流程为什么不够用？
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: 希望达到的结果
+    validations:
+      required: true
+  - type: textarea
+    id: current-workaround
+    attributes:
+      label: 当前替代办法
+  - type: dropdown
+    id: data-impact
+    attributes:
+      label: 是否涉及文件格式或资料迁移
+      options:
+        - 否，只是界面或交互
+        - 是，涉及 Markdown、附件或白板 JSON
+        - 不确定
+    validations:
+      required: true
+

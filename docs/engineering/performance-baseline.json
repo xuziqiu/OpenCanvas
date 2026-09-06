@@ -1,0 +1,28 @@
+{
+  "capturedAt": "2026-08-24",
+  "version": "1.0.7",
+  "reference": "Windows Electron 43, fresh strict-port Vite server; 1.0.7 release candidate",
+  "budgets": {
+    "fiveThousandNodeFirstViewportMs": 1000,
+    "mountedCanvasNodes": 150,
+    "tenThousandCardSearchP95Ms": 100,
+    "javascriptChunkBytes": 460800,
+    "longDocumentOpenMs": 6500,
+    "longDocumentEditMs": 2000
+  },
+  "latestVerified": {
+    "fiveThousandNodeFirstViewportMs": 129,
+    "mountedCanvasNodes": 20,
+    "tenThousandCardSearchP95": "passed by 20-query automated budget test",
+    "largestJavaScriptChunk": {
+      "logicalName": "editor-core",
+      "bytes": 413005
+    },
+    "mainJavaScriptBytes": 454103,
+    "longDocumentParagraphs": 1200,
+    "longDocumentOpenMs": 4169,
+    "longDocumentEditMs": 250,
+    "unitTests": 339,
+    "electronSmoke": "passed"
+  }
+}

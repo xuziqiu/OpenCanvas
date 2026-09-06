@@ -1,0 +1,28 @@
+# Dependencies and generated output
+/node_modules/
+/dist/
+/release/
+/release-*/
+/.vite/
+/coverage/
+/*.tsbuildinfo
+*.log
+
+# Local environment files
+.env
+.env.*
+!.env.example
+*.local
+
+# Local QA workspaces and browser profiles
+/.qa-*/
+
+# OS and editor metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Proprietary reference packages extracted for user-authorized local inspection.
+# These must never be committed or redistributed with OpenCanvas.
+/heptabase-*-unpacked/

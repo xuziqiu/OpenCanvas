@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "vaultPath": "C:/旧知识库",
+  "notes": [
+    {
+      "id": "legacy-card",
+      "fileName": "旧卡片.md",
+      "title": "旧卡片",
+      "body": "# 从旧版本迁移",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-02T00:00:00.000Z"
+    }
+  ],
+  "boards": [
+    {
+      "version": 1,
+      "id": "legacy-root",
+      "fileName": "legacy-root.board.json",
+      "title": "旧根白板",
+      "nodes": [
+        { "id": "legacy-card-node", "kind": "note", "refId": "legacy-card", "x": 40, "y": 60, "width": -20, "height": 10 },
+        { "id": "legacy-child-node", "kind": "board", "refId": "legacy-child", "x": 500, "y": 60, "width": 430, "height": 270 }
+      ],
+      "edges": [
+        { "id": "legacy-edge", "from": "legacy-card-node", "to": "legacy-child-node", "beginPos": "right", "endPos": "left" }
+      ],
+      "viewport": { "x": 12, "y": 18, "zoom": 99 }
+    },
+    {
+      "version": 1,
+      "id": "legacy-child",
+      "fileName": "legacy-child.board.json",
+      "title": "旧子白板",
+      "nodes": []
+    }
+  ],
+  "desktop": {
+    "placements": [
+      { "boardId": "legacy-root", "x": 90, "y": 110, "width": 430, "height": 270 },
+      { "boardId": "legacy-child", "x": 900, "y": 800, "width": 430, "height": 270 }
+    ],
+    "viewport": { "x": 4, "y": 8, "zoom": 0.01 }
+  }
+}

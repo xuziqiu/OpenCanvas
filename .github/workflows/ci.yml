@@ -1,0 +1,33 @@
+name: OpenCanvas CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: 构建与质量门禁
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - name: 检出源码
+        uses: actions/checkout@v7
+      - name: 配置 Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.13.0
+          cache: npm
+      - name: 安装锁定依赖
+        run: npm ci
+      - name: 审计生产与开发依赖
+        run: npm run security:check
+      - name: 运行测试、类型、卫生、可访问性与构建预算
+        run: npm run build
+      - name: 运行隔离 Electron 交互回归
+        run: npm run test:electron
